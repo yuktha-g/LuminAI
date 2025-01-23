@@ -1,0 +1,167 @@
+import os
+import streamlit as st
+import PIL.Image
+import pytesseract
+from pdf2image import convert_from_path
+from transformers import BlipProcessor, BlipForConditionalGeneration
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk import pos_tag
+import nltk
+import re
+import torch
+import aspose.slides as slides
+import aspose.pydrawing as drawing
+
+nltk.download('punkt')
+
+# Load the BLIP model
+processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
+model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)
+
+def extract_images_from_pdf(pdf_path):
+    try:
+        # Convert PDF pages to images
+        images = convert_from_path(pdf_path)
+        
+        # Save images
+        for i, image in enumerate(images):
+            image_file_name = f'Image-{i}.png'
+            image.save(image_file_name, 'PNG')
+        
+        st.write("Total Extracted Images: ", len(images))
+        return len(images)
+    except Exception as e:
+        st.error(f"Error occurred while extracting images from PDF: {e}")
+        return 0
+
+def get_image_format(image_type):
+    return {
+        "jpeg": drawing.imaging.ImageFormat.jpeg,
+        "png": drawing.imaging.ImageFormat.png,
+    }.get(image_type, None)
+
+def extract_images_from_ppt(ppt_path):
+    image_index = 1
+
+    with slides.Presentation(ppt_path) as pres:
+        for image in pres.images:
+            file_name = f"Image_{image_index}.{image.content_type.split('/')[1].lower()}"
+            image_format = get_image_format(image.content_type.split("/")[1].lower())
+            if image_format:
+                image.system_image.save(file_name, image_format)
+                image_index += 1
+        st.write("Total Extracted Images: ", image_index - 1)
+    return image_index - 1
+
+def predict_step(images):
+    captions = []
+    for image in images:
+        inputs = processor(images=image, return_tensors="pt").to(device)
+        outputs = model.generate(**inputs)
+        caption = processor.decode(outputs[0], skip_special_tokens=True)
+        captions.append(caption)
+    return captions
+
+st.title("Image Captioning")
+
+option = st.radio("Choose an option:", ("Extract images from PDF", "Extract images from PPT"))
+
+if option == "Extract images from PDF":
+    pdf_file = st.file_uploader("Upload a PDF file...", type=["pdf"])
+    
+    if pdf_file is not None:
+        with open("temp.pdf", "wb") as f:
+            f.write(pdf_file.getvalue())
+
+        pdf_images_count = extract_images_from_pdf("temp.pdf")
+
+        os.remove("temp.pdf")
+
+        for i in range(pdf_images_count):
+            image = PIL.Image.open(f'Image-{i}.png')
+            cap = predict_step([image])
+            pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract'
+            extracted_text = pytesseract.image_to_string(image)
+
+            clean_text = re.sub(r'[^\w\s]', '', extracted_text)
+            clean_text = re.sub(r'\d+', '', clean_text)
+
+            sentences = sent_tokenize(clean_text)
+            
+            nouns = []
+            verbs = []
+            adjectives = []
+            if sentences:
+                for sentence in sentences:
+                    words = word_tokenize(sentence)
+                    tagged_words = pos_tag(words)
+                    for word, pos in tagged_words:
+                        if pos.startswith('NN'):
+                            nouns.append(word)
+                        elif pos.startswith('VB'):
+                            verbs.append(word)
+                        elif pos.startswith('JJ'):
+                            adjectives.append(word)
+
+                paragraph = f"The extracted text from the image appears to contain {len(sentences)} sentences. " \
+                            f"It discusses various topics, including {', '.join(set(nouns))} and actions such as " \
+                            f"{', '.join(set(verbs))}. The text also provides descriptive details using " \
+                            f"{', '.join(set(adjectives))} adjectives."
+
+            else:
+                paragraph = ""
+
+            st.image(image, caption=f'{cap[0]}\n{paragraph}')
+
+elif option == "Extract images from PPT":
+    ppt_file = st.file_uploader("Upload a PPT file...", type=["pptx"])
+    
+    if ppt_file is not None:
+        with open("temp.pptx", "wb") as f:
+            f.write(ppt_file.getvalue())
+
+        ppt_images_count = extract_images_from_ppt("temp.pptx")
+
+        os.remove("temp.pptx")
+
+        for i in range(ppt_images_count):
+            try:
+                image = PIL.Image.open(f'Image_{i+1}.jpeg')
+            except Exception:
+                image = PIL.Image.open(f'Image_{i+1}.png')
+            cap = predict_step([image])
+            pytesseract.pytesseract.tesseract_cmd = r'C:/Program Files/Tesseract-OCR/tesseract'
+            extracted_text = pytesseract.image_to_string(image)
+
+            clean_text = re.sub(r'[^\w\s]', '', extracted_text)
+            clean_text = re.sub(r'\d+', '', clean_text)
+
+            sentences = sent_tokenize(clean_text)
+            
+            nouns = []
+            verbs = []
+            adjectives = []
+            if sentences:
+                for sentence in sentences:
+                    words = word_tokenize(sentence)
+                    tagged_words = pos_tag(words)
+                    for word, pos in tagged_words:
+                        if pos.startswith('NN'):
+                            nouns.append(word)
+                        elif pos.startswith('VB'):
+                            verbs.append(word)
+                        elif pos.startswith('JJ'):
+                            adjectives.append(word)
+
+                paragraph = f"The extracted text from the image appears to contain {len(sentences)} sentences. " \
+                            f"It discusses various topics, including {', '.join(set(nouns))} and actions such as " \
+                            f"{', '.join(set(verbs))}. The text also provides descriptive details using " \
+                            f"{', '.join(set(adjectives))} adjectives."
+
+            else:
+                paragraph = ""
+
+            st.image(image, caption=f'{cap[0]}\n{paragraph}')
