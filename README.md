@@ -81,4 +81,53 @@ LuminAI is an AI-driven research assistant designed to enhance your document int
    git clone https://github.com/your-username/luminai.git
    cd luminai
 
+2. Install Required Packages
+   ```bash
+   pip install -r requirements.txt
+3. Environment Setup
+*	Create a .env file in the root directory
+*	Add the following environment variables:
+    ```bash
+    MODEL_NAME=mistralai/Mistral-7B-Instruct-v0.1
+    EMBEDDING_MODEL=hkunlp/instructor-xl
+
+### Running the Application
+* Start the streamlit app:
+    ```bash
+    streamlit run app.py
+    
+*	Open browser and navigate to: http://localhost:8501
+
+
+## Usage Instructions
+1.	Upload Documents:
+   * Drag and drop files in "Document Library" 
+   *	Supported formats: PDF, DOCX, PPTX, LaTeX
+2.	Ask Questions:
+   * Enter queries in text input field
+   * LuminAI will analyze the uploaded documents and generate responses.
+3. Download History:
+   * Export chat history as .txt
+
+
+## File Structure
+Copy
+LuminAI/
+├── app.py                # Main Streamlit application
+├── document_processor.py # Document processing logic
+├── requirements.txt      # Python dependencies
+├── .env                  # Environment variables
+├── README.md             # Project documentation
+├── htmlTemplates2.py     # UI templates
+└── ...                   # Other supporting files
+
+
+## Note
+* Ensure that the uploaded documents contain relevant research papers with readable text. The effectiveness of the chatbot depends on the quality and relevance of the content provided.
+* For better performance, it is recommended to provide clear and concise questions related to the content of the research papers.
+
+
+Please find the demo video and performance evolution here
+
+
 
