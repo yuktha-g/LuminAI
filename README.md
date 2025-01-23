@@ -127,6 +127,11 @@ LuminAI/
 * For better performance, it is recommended to provide clear and concise questions related to the content of the research papers.
 
 
+## Conclusion
+
+Lumin AI transforms the landscape of data analysis and decision-making by providing cutting-edge, intuitive tools for businesses and researchers. With its advanced machine learning algorithms and user-friendly interface, Lumin AI empowers users to uncover hidden patterns, automate complex processes, and generate actionable insights with ease. Whether for predictive analytics, trend identification, or real-time decision support, Lumin AI is the ultimate companion for anyone looking to leverage data to its fullest potential. Step into the future of intelligent data processing with Lumin AI today!
+
+##
 Please find the demo video and performance evolution here
 
 
