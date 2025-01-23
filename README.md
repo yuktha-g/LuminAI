@@ -94,7 +94,7 @@ LuminAI is an AI-driven research assistant designed to enhance your document int
 ### Running the Application
 * Start the streamlit app:
     ```bash
-    streamlit run app.py
+    streamlit chatbot_LuminAI.py
     
 *	Open browser and navigate to: http://localhost:8501
 
@@ -133,6 +133,20 @@ Lumin AI transforms the landscape of data analysis and decision-making by provid
 
 ##
 Please find the demo here
+
+![Screenshot (296)](https://github.com/user-attachments/assets/a1907346-dc15-4cad-a209-f1a30c62172d)
+![Screenshot (297)](https://github.com/user-attachments/assets/0e05b0fb-6061-4e68-b6bf-5bfc2511f9ab)
+
+![Screenshot (298)](https://github.com/user-attachments/assets/8eef3450-4802-4946-b65b-15432bad3434)
+
+![Screenshot (299)](https://github.com/user-attachments/assets/4e4d5a59-9493-4180-a86d-99703b84e411)
+
+![Screenshot (300)](https://github.com/user-attachments/assets/3afb9ce2-4c0a-4b23-b091-3d85e7716026)
+
+![Screenshot (301)](https://github.com/user-attachments/assets/2dd58c50-3b56-413c-896d-32617832db7e)
+
+
+![Screenshot (302)](https://github.com/user-attachments/assets/24f26010-3cc7-4cf5-aa06-54a4b2ec4a8c)
 
 
 
