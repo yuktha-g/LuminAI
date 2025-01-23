@@ -22,7 +22,7 @@ LuminAI is an AI-driven research assistant designed to enhance your document int
 * Includes source citations for generated answers.
 
 ### 4. Local AI Model Integration
-* Utilizes open-source models such as **LLaMA** and **GPT-2** for text generation.
+* Runs on Local Model.
 * Operates without reliance on paid APIs like OpenAI or Hugging Face Hub.
 
 ### 5. Interactive Web Interface
@@ -58,7 +58,8 @@ LuminAI is an AI-driven research assistant designed to enhance your document int
 
 3. **Ranked Retrieval and Language Model Integration**:
    * Relevant content is retrieved based on vector similarity.
-   * Open-source LLMs, such as **Mistral-7B-Instruct**, are used for generating responses.
+   * Semantic content retrieval
+   * Response generation
 
 4. **Output Generation**:
    * Contextually accurate answers are delivered with source citations.
@@ -84,12 +85,6 @@ LuminAI is an AI-driven research assistant designed to enhance your document int
 2. Install Required Packages
    ```bash
    pip install -r requirements.txt
-3. Environment Setup
-*	Create a .env file in the root directory
-*	Add the following environment variables:
-    ```bash
-    MODEL_NAME=mistralai/Mistral-7B-Instruct-v0.1
-    EMBEDDING_MODEL=hkunlp/instructor-xl
 
 ### Running the Application
 * Start the streamlit app:
