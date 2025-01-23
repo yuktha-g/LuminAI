@@ -68,7 +68,24 @@ LuminAI is an AI-driven research assistant designed to enhance your document int
    * Users can save their chat history for future reference.
 
 ---
+##
+Please find the demo here
+![Screenshot (296)](https://github.com/user-attachments/assets/c1b89eb5-8baa-4d22-b354-15a7f5cd73a1)
 
+![Screenshot (297)](https://github.com/user-attachments/assets/6e038aab-2cc4-458e-9eab-e393b668a567)
+
+![Screenshot (298)](https://github.com/user-attachments/assets/3dbbda2a-f337-4ebb-9695-02dc19eeeea7)
+
+![Screenshot (299)](https://github.com/user-attachments/assets/727ef849-d33f-4662-973b-5e26cac752a4)
+
+![Screenshot (300)](https://github.com/user-attachments/assets/ba603e93-67c9-4faf-ad41-95ba5450e371)
+
+
+![Screenshot (301)](https://github.com/user-attachments/assets/6e12c517-5f8e-4c34-ba1c-4f68f0f96df8)
+
+![Screenshot (302)](https://github.com/user-attachments/assets/cb9511c1-4462-4012-804c-bd0af160bcda)
+
+---
 ## Installation and Setup
 
 ### Prerequisites:
@@ -126,22 +143,7 @@ LuminAI/
 
 Lumin AI transforms the landscape of data analysis and decision-making by providing cutting-edge, intuitive tools for businesses and researchers. With its advanced machine learning algorithms and user-friendly interface, Lumin AI empowers users to uncover hidden patterns, automate complex processes, and generate actionable insights with ease. Whether for predictive analytics, trend identification, or real-time decision support, Lumin AI is the ultimate companion for anyone looking to leverage data to its fullest potential. Step into the future of intelligent data processing with Lumin AI today!
 
-##
-Please find the demo here
 
-![Screenshot (296)](https://github.com/user-attachments/assets/a1907346-dc15-4cad-a209-f1a30c62172d)
-![Screenshot (297)](https://github.com/user-attachments/assets/0e05b0fb-6061-4e68-b6bf-5bfc2511f9ab)
-
-![Screenshot (298)](https://github.com/user-attachments/assets/8eef3450-4802-4946-b65b-15432bad3434)
-
-![Screenshot (299)](https://github.com/user-attachments/assets/4e4d5a59-9493-4180-a86d-99703b84e411)
-
-![Screenshot (300)](https://github.com/user-attachments/assets/3afb9ce2-4c0a-4b23-b091-3d85e7716026)
-
-![Screenshot (301)](https://github.com/user-attachments/assets/2dd58c50-3b56-413c-896d-32617832db7e)
-
-
-![Screenshot (302)](https://github.com/user-attachments/assets/24f26010-3cc7-4cf5-aa06-54a4b2ec4a8c)
 
 
 
